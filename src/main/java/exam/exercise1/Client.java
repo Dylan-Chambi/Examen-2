@@ -2,29 +2,21 @@ package exam.exercise1;
 
 public class Client {
     public static void main(String[] ardssd) {
-        Caretaker caretaker = new Caretaker();
+        BaseDeDatos baseDeDatos = new BaseDeDatos();
         VersionadorArchivo versionadorArchivo = new VersionadorArchivo();
 
-        Archivo archivo;
+        Archivo archivo = new Archivo(versionadorArchivo, baseDeDatos);
 
-        archivo = new Archivo("eynar", "State1");
-        versionadorArchivo.setMemento(archivo); // ----> crear un momento basado PC
-        caretaker.addMemento(versionadorArchivo.createMemento()); // ---> guardar el momento [0]
-        archivo = new Archivo("jose", "State2");
-        versionadorArchivo.setMemento(archivo);
-        archivo = new Archivo("maria", "State3");
-        versionadorArchivo.setMemento(archivo);
-        archivo = new Archivo("mario", "State4");
-        versionadorArchivo.setMemento(archivo);
-        caretaker.addMemento(versionadorArchivo.createMemento()); // [1]
-        archivo = new Archivo("juan", "State5");
-        versionadorArchivo.setMemento(archivo);
-        archivo = new Archivo("upb", "State6");
-        versionadorArchivo.setMemento(archivo);
-        caretaker.addMemento(versionadorArchivo.createMemento()); // [2]
+        archivo.addTexto("este documento es una prueba");
+        archivo.addTexto("el exito solo depende de tu esfuerzo");
+        archivo.addTexto("prologo");
+        archivo.addTexto("este documento fue actualizado satisfactoriamente");
 
-        archivo = versionadorArchivo.restoreMemento(caretaker.getMemento(1));
-        System.out.println("*************VALORES ACTUALES ********************");
+        System.out.println("---------------------------Archivo original---------------------------");
+        archivo.showInfo();
+
+        System.out.println("---------------------------Archivo recuperado - version 1---------------------------");
+        archivo = versionadorArchivo.restoreVersion(baseDeDatos.getVersion("version1"));
         archivo.showInfo();
 
     }

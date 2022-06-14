@@ -3,16 +3,16 @@ package exam.exercise1;
 public class VersionadorArchivo {
     private Archivo state;
 
-    public void setMemento(Archivo state){
+    public void setVersion(Archivo state){
         this.state=state;
     }
 
-    public Version createMemento(){
+    public Version createVersion(){
         return new Version(state);
     }
 
-    public Archivo restoreMemento(Version m){
-        this.state= m.getState();
+    public Archivo restoreVersion(Version version){
+        this.state= version.getState();
         return this.state;
     }
 
