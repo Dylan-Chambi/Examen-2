@@ -2,17 +2,31 @@ package exam.exercise2;
 
 public class Client {
 
-    public static void main(String[]args){
-        ConcreteMediator mediator = new ConcreteMediator();
+    public static void main(String[]args) throws ClassNotFoundException {
+        ChatJuego mediator = new ChatJuego();
 
-        ConcreteColleague1 c1 = new ConcreteColleague1(mediator);
-        ConcreteColleague2 c2 = new ConcreteColleague2(mediator);
+        Estudiante estudiante1 = new Estudiante(mediator, "Daef", "Dylan", "Oro");
+        Estudiante estudiante2 = new Estudiante(mediator, "Maiaa", "Maria", "Plata");
+        Estudiante estudiante3 = new Estudiante(mediator, "Zayk", "Juan", "Oro");
 
-        mediator.setUser1(c1);
-        mediator.setUser2(c2);
+        Docente docente1 = new Docente(mediator, "Ponce", "Paul", "Bronce");
+        Docente docente2 = new Docente(mediator, "Malik", "Mario", "Platino");
+        Docente docente3 = new Docente(mediator, "Jomy", "Joseph", "Oro");
 
-        c1.send("este mensaje es para el C2 ---> pregunta");
-        c2.send("mensaje claro --> respuesta");
+        mediator.addJugador(estudiante1);
+        mediator.addJugador(estudiante2);
+        mediator.addJugador(estudiante3);
+        mediator.addJugador(docente1);
+        mediator.addJugador(docente2);
+        mediator.addJugador(docente3);
+
+        docente1.sendTeam("Hola team de docentes");
+
+        estudiante1.sendTeam("Hola team de estudiantes");
+
+        estudiante3.sendAll("Hola a todos");
+
+
     }
 
 }

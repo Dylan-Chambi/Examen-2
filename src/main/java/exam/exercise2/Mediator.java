@@ -1,5 +1,7 @@
 package exam.exercise2;
 
 public interface Mediator {
-    void send(String msg, Colleague colleague);
+    void sendAll(String msg, Jugador jugador);
+
+    void sendTeam(String msg, Jugador jugador) throws ClassNotFoundException;
 }
