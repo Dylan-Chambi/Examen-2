@@ -2,14 +2,20 @@ package exam.exercise3;
 
 public class Client {
     public static void main (String [] args){
-        ConcreteSubject subject = new ConcreteSubject();
+        PaginaWeb paginaWeb = new PaginaWeb();
 
-        subject.attach(new ConcreteObserver());
-        subject.attach(new ConcreteObserver());
-        subject.attach(new ConcreteObserver1());
-        subject.attach(new ConcreteObserver1());
+        Usuario usuario1 = new Usuario("Carlos");
+        Usuario usuario2 = new Usuario("Juan");
+        Usuario usuario3 = new Usuario("Maria");
 
-        subject.action2();
+        paginaWeb.subscribirUsuario(usuario1, TipoNotificacion.IMAGENES);
+        paginaWeb.subscribirUsuario(usuario2, TipoNotificacion.VIDEOS);
+
+        paginaWeb.subscribirUsuario(usuario3, TipoNotificacion.VIDEOS);
+        paginaWeb.subscribirUsuario(usuario3, TipoNotificacion.IMAGENES);
+
+        paginaWeb.notifyObservers("Nuevo video!!", TipoNotificacion.VIDEOS);
+        paginaWeb.notifyObservers("Nuevas imagenes de gatitos!!", TipoNotificacion.IMAGENES);
 
     }
 }
